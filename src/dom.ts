@@ -314,9 +314,13 @@ export class DocumentObjectModel<T> {
         )
     }
 
-    clear() {
-        if (this.root.innerHTML !== EMPTY) {
+    clear(focusWithCursor: boolean = true) {
+        if (!this.isEmpty()) {
             this.root.innerHTML = EMPTY
+
+            if (focusWithCursor && this.root.lastChild && this.root.lastChild.lastChild) {
+                this.editor.selection.setCursor(this.root.lastChild.lastChild)
+            }
         }
     }
 }

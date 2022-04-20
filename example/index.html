@@ -31,10 +31,23 @@
             background: rgba(255, 0, 0, 0.15);
             padding: 0.25rem 0.35rem;
         }
+
+        .editor-wrapper {
+            position: relative;
+        }
+
+        #editor-clear {
+            position: absolute;
+            right: 1rem;
+            bottom: 0;
+        }
     </style>
 </head>
 <body>
-    <div id="editor"></div>
+    <div class="editor-wrapper">
+        <div id="editor"></div>
+        <button id="editor-clear">Clear</button>
+    </div>
 
     <div>
         <h3>Replacing with text</h3>
@@ -345,6 +358,15 @@
             }
 
             // TODO: Select the result that matched the range.
+        })
+
+        document.getElementById('editor-clear').addEventListener('click', (e) => {
+            console.log('button event:', e)
+
+            e.preventDefault();
+            e.stopPropagation();
+
+            editor.clear();
         })
 
         console.log(editor)
